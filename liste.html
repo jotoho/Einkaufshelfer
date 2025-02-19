@@ -1,0 +1,54 @@
+<!doctype html>
+<!--
+  SPDX-License-Identifier: AGPL-3.0-only
+  SPDX-FileCopyrightText: 2025 Tim Beckmann <beckmann.tim@fh-swf.de>
+-->
+
+<html lang="de">
+
+<head>
+    <load src="partials/meta.html" />
+    <link href="src/list.css" type="text/css" rel="stylesheet" />
+    <script type="module" src="/src/list.ts"></script>
+</head>
+
+<body>
+    <load src="partials/standardheader.html" pageTitle="Liste" />
+    <main>
+        <div id="listInfo">
+            <input type="date" id="deadline" readonly required>
+            <input type="text" id="listTitel" readonly required>
+            <br />
+            <textarea id="listDescription" rows="4" cols="50" readonly required></textarea>
+            <br />
+            <button type="button" id="editDescriptionButton">&#9998;</button>
+            <button type="button" id="deleteListButton">&#x1F5D1;</button>
+        </div>
+        <div id="listContent">
+            <table id="productTable">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th id="name">Artikelname</th>
+                        <th>Anzahl</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <form id="newProduct">
+                            <th></th>
+                            <th><input type="text" id="productName" placeholder="Produktname" required></th>
+                            <th><input type="number" id="quantity" min="1" max="999" placeholder="1" required></th>
+                            <th><button type="submit" id="confirmButton">&#10003;</button></th>
+                            <th><button type="reset" id="resetButton">&#8634;</button></th>
+                        </form>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+
+</html>
