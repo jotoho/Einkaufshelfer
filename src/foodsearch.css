@@ -1,0 +1,77 @@
+/*
+  SPDX-License-Identifier: AGPL-3.0-only
+  SPDX-FileCopyrightText: 2025 Jonas Tobias Hopusch <git@jotoho.de>
+*/
+
+main {
+  form#foodSearch {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+  }
+
+  ol#searchResults {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    padding-left: unset;
+    overflow: hidden;
+
+    &:empty::before {
+      content: "Nutzen Sie bitte das Formular, um eine Suche auszuführen.";
+      text-align: center;
+      display: block;
+    }
+
+    > li {
+      display: block;
+      &:not(:first-child) {
+        border-top: 1px solid;
+      }
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1em;
+      overflow: hidden;
+
+      table.nutriments {
+        font-size: small;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        column-gap: 1em;
+
+        thead {
+          display: none;
+        }
+
+        > tbody {
+          display: contents;
+
+          > tr {
+            -webkit-line-clamp: 1;
+            line-clamp: 1;
+
+            > td:first-child {
+              white-space: preserve;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  :has(button[type="submit"][disabled]) ol#searchResults:empty::before {
+    content: "Sie haben die maximale Anzahl an Suchanfragen überschritten. Warten Sie bitte, bis wieder anfragen frei werden.";
+  }
+
+  .legalInformation {
+    font-size: x-small;
+  }
+
+  button#nextPage {
+    display: block;
+    margin-left: auto;
+    background: unset;
+  }
+}

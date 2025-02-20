@@ -4,6 +4,8 @@
 import { Client, Account, Models } from "appwrite";
 import { CONFIG } from "./config.ts";
 
+console.info("Running Einkaufshelfer@" + CONFIG.VERSION);
+
 const pageHeader: HTMLElement | null = document.querySelector(
   "header#pageHeader.standardheader",
 );

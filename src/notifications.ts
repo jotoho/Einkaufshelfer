@@ -6,7 +6,7 @@ const DEFAULT_DURATION = 5_000;
 export const showToast = async (
   notificationText: string,
   duration: number = DEFAULT_DURATION,
-) => {
+): Promise<HTMLElement> => {
   document.querySelector("#toast")?.remove?.();
   const newToast = document.createElement("div");
   newToast.id = "toast";
@@ -16,4 +16,5 @@ export const showToast = async (
     duration = DEFAULT_DURATION;
   }
   setTimeout(() => newToast.remove(), duration);
+  return newToast;
 };

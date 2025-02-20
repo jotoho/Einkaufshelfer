@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="de">
+  <!--
+        SPDX-License-Identifier: AGPL-3.0-only
+        SPDX-FileCopyrightText: 2025 Jonas Tobias Hopusch <git@jotoho.de>
+  -->
+  <head>
+    <load src="partials/meta.html" />
+    <title>Lebensmittelsuche | EinkaufsApp</title>
+    <link href="src/foodsearch.css" type="text/css" rel="stylesheet" />
+    <script type="module" src="src/foodsearch.ts"></script>
+  </head>
+  <body>
+    <load src="partials/standardheader.html" pageTitle="Lebensmittelsuche" />
+    <main>
+      <form id="foodSearch">
+        <input type="text" name="searchTerm" placeholder="Banane" />
+        <input type="submit" name="searchSubmit" value="Absenden" />
+      </form>
+      <p class="legalInformation">
+        Diese Suchfunktion nutzt
+        <a href="https://de.openfoodfacts.org"
+          >die Programmierschnittstelle und Datenbank von OpenFoodFacts.</a
+        >
+        Es besteht kein Anspruch auf Wahrheit oder Vollständigkeit der Daten.
+      </p>
+      <hr />
+      <ol id="searchResults"></ol>
+      <button id="nextPage" disabled>Nächste Seite</button>
+    </main>
+  </body>
+</html>

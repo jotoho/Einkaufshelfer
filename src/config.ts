@@ -3,6 +3,8 @@
 
 "use strict";
 
+export declare const EINKAUFSLISTE_VERSION: string;
+
 export const CONFIG = Object.freeze({
   PROJECT_ID: "6772879d002b324f99dc",
   BACKEND_ENDPOINT: "https://cloud.appwrite.io/v1",
@@ -11,4 +13,6 @@ export const CONFIG = Object.freeze({
   DB_COLLECTION_SHOPLISTENTRY: "67a9d8c50002a811f75e",
   MAX_CONCURRENT_HOUSEHOLDS: 10,
   FUNCTION_INVITE_TO_TEAM: "67b352430011122f36ac",
+  VERSION: EINKAUFSLISTE_VERSION ?? "unknown-version",
+  CONTACT_EMAIL: "einkaufshelfer@jotoho.de",
 });
