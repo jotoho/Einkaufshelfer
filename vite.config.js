@@ -18,6 +18,7 @@ export default defineConfig({
 				uebersicht: resolve(__dirname, '/uebersicht.html'),
 				registration: resolve(__dirname, '/registration.html'),
 				settings: resolve(__dirname, '/settings.html'),
+				liste: resolve(__dirname, '/liste.html'),
 			},
 		},
 		target: 'es2024',
