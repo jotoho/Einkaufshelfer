@@ -11,6 +11,7 @@
   "devDependencies": {
     "@eslint/js": "^9.20.0",
     "eslint": "^9.20.1",
+    "jsr": "^0.13.3",
     "prettier": "3.5.1",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.0",
@@ -18,6 +19,7 @@
     "vite-plugin-html-inject": "^1.1.2"
   },
   "dependencies": {
+    "@zade/vite-plugin-strip-html-comments": "npm:@jsr/zade__vite-plugin-strip-html-comments@^1.0.1",
     "appwrite": "^17.0.0"
   }
 }

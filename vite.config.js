@@ -4,9 +4,10 @@
 import { resolve } from "path";
 import { defineConfig } from 'vite';
 import injectHTML from 'vite-plugin-html-inject';
+import { stripHTMLComments } from "@zade/vite-plugin-strip-html-comments";
 
 export default defineConfig({
-	plugins: [injectHTML()],
+	plugins: [injectHTML(), stripHTMLComments()],
 	build: {
 		rollupOptions: {
 			input: {
