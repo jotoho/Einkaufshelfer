@@ -260,7 +260,7 @@ function updateRowEntry(entry: Listeneintrag) {
     name.value = entry.artikelname;
 
     const quantity = document.querySelector('tr#id-' + entry.$id! + '> td > input[name=quantity]') as HTMLInputElement;
-    quantity.value = entry.anzahl;
+    quantity.value = String(entry.anzahl);
 }
 
 async function updateListEntry(entry: Listeneintrag) {
