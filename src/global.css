@@ -6,6 +6,7 @@
 * {
   box-sizing: border-box;
   border-collapse: collapse;
+  border-radius: unset;
 }
 
 :root {
