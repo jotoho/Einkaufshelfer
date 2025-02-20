@@ -1,15 +1,19 @@
-<!--
-SPDX-License-Identifier: AGPL-3.0-only
-SPDX-FileCopyrightText: 2025 Jonas Tobias Hopusch <git@jotoho.de>
--->
 <header id="pageHeader" class="standardheader">
+  <!--
+    SPDX-License-Identifier: AGPL-3.0-only
+    SPDX-FileCopyrightText: 2025 Jonas Tobias Hopusch <git@jotoho.de>
+  -->
   <link href="/src/header.css" type="text/css" rel="stylesheet" hidden />
   <script type="module" src="/src/header.ts" hidden></script>
   <h1><a href="/">Einkaufshelfer</a></h1>
   <div id="headerPageTitle">{=$pageTitle}</div>
   <div id="headerGlobalActions">
     <a id="headerUserInfo" href="/settings.html"></a>
-    <button id="headerLogin" disabled><a href="/login.html">⎆ Anmelden</a></button>
-    <button id="headerLogoff" disabled><img src="/logout.svg" /> Abmelden</button>
+    <button id="headerLogin" disabled>
+      <a href="/login.html">⎆ Anmelden</a>
+    </button>
+    <button id="headerLogoff" disabled>
+      <img src="/logout.svg" /> Abmelden
+    </button>
   </div>
 </header>
