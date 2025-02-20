@@ -1,0 +1,48 @@
+/*
+  SPDX-License-Identifier: AGPL-3.0-only
+  SPDX-FileCopyrightText: 2025 Tim Beckmann <beckmann.tim@fh-swf.de>
+*/
+
+main div{
+    text-align: center;
+    margin-bottom: 2em;
+    margin-top: 2em;
+}
+
+#listDescription{
+    margin-top: 1em;
+}
+
+input {
+    text-align: center;
+    background-color: transparent;
+    color: inherit ;
+    border-style: ridge;
+}
+
+table {
+    border: 1px solid gray;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr{
+    border-top: 1px solid grey;
+}
+
+td,th{
+    padding: 0.2em;
+}
+
+#name{
+    width: 60%;
+}
+
+main button{
+    background-color: transparent;
+}
+
+#quantity{
+    text-align: center;
+}
