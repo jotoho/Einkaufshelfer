@@ -7,18 +7,21 @@ form#new-list-form {
   margin-left: auto;
   margin-right: auto;
   display: flex;
-  width: fit-content;
+  width: 100%;
   flex-direction: row;
   flex-wrap: wrap;
   gap: max(min(1em, 1vh, 1vw), 1px);
   padding: 0;
 
-  > input[type="text"] {
+  > input, > select, > button {
+    flex-basis: content;
+    flex-shrink: 0;
     flex-grow: 1;
+    width: fit-content;
   }
 
-  > label {
-    gap: 0;
+  > input[type=text][name=listname] {
+    flex-grow: 4;
   }
 }
 
@@ -53,13 +56,14 @@ main > h2 {
     list-style-type: none;
     border: 1px solid black;
     padding: max(min(1em, 1vw, 1vh), 1px);
-    gap: 1em;
+    gap: max(min(1em, 1vw, 1vh), 1px);
     display: flex;
     flex-direction: row;
     flex-basis: content;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: 100%;
     align-items: center;
+    overflow: hidden;
 
     > a {
       display: contents;
@@ -70,17 +74,26 @@ main > h2 {
       }
 
       > * {
+        flex-basis: content;
         flex-grow: 0;
-        flex-shrink: 1;
+        flex-shrink: 0;
         display: block;
       }
 
-      > h3 {
+      > h4 {
         padding: unset;
         margin: unset;
+        flex-shrink: 1;
+        text-overflow: ellipsis;
+        min-width: unset;
+        width: fit-content;
+        overflow: hidden;
+        line-clamp: 1;
+        -webkit-line-clamp: 1;
       }
 
       > progress {
+        flex-basis: 0;
         flex-grow: 1;
       }
     }
