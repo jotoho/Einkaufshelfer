@@ -13,7 +13,6 @@ import {
 } from "appwrite";
 import { CONFIG } from "./config.ts";
 import { showToast } from "./notifications.ts";
-import { Einkaufsliste } from "./types.ts";
 
 const client = new Client()
   .setEndpoint(CONFIG.BACKEND_ENDPOINT)
@@ -57,63 +56,98 @@ if (buttonNewHousehold) {
   buttonNewHousehold.addEventListener("click", createNewHouseholdCallback);
 }
 
+const leaveHousehold = async (
+  household: Models.Team<Models.Preferences>,
+  programmaticCall: boolean = false,
+) => {
+  const confirmQuestion = `Sind Sie sicher, dass Sie den Haushalt ${household.name} verlassen möchten? Falls der dadurch leer wird, wird der und alle ihm zugeordneten Listen unwiderruflich gelöscht.`;
+  if (!programmaticCall && !window.confirm(confirmQuestion)) {
+    return;
+  }
+
+  const currentMembershipsInTeam = await teamsAPI
+    .listMemberships(household.$id)
+    .then(
+      (wrapper) => wrapper.memberships,
+      () => [],
+    );
+  const myMembership = currentMembershipsInTeam.filter(
+    (membership) => membership.userId === currentUser.$id,
+  )[0];
+  if (household.total <= 1) {
+    await dbAPI
+      .listDocuments(CONFIG.DATABASE_ID, CONFIG.DB_COLLECTION_SHOPPINGLISTS, [
+        Query.equal("ID_Household", [household.$id]),
+      ])
+      .then(
+        async (documentsWrapper) => {
+          await Promise.all(
+            documentsWrapper.documents.map((doc) =>
+              dbAPI.deleteDocument(
+                CONFIG.DATABASE_ID,
+                CONFIG.DB_COLLECTION_SHOPPINGLISTS,
+                doc.$id,
+              ),
+            ),
+          );
+        },
+        () => {},
+      );
+
+    await teamsAPI.delete(household.$id).then(
+      () => {
+        if (!programmaticCall) {
+          window.location.reload();
+        }
+      },
+      (reason) => {
+        showToast("Haushalt löschen hat fehlgeschlagen.");
+        console.debug("Delete household fail reason:", reason);
+      },
+    );
+  } else {
+    await teamsAPI.deleteMembership(household.$id, myMembership.$id).then(
+      () => {
+        if (!programmaticCall) {
+          window.location.reload();
+        }
+      },
+      (reason) => {
+        showToast("Haushalt verlassen hat fehlgeschlagen.");
+        console.debug("Leave household fail reason:", reason);
+      },
+    );
+  }
+};
+
 const buttonDeleteAccountFn = async () => {
-  const orderedDeletions = [];
+  const isUserSure = window.confirm(
+    "Sind Sie sich sicher, dass sie dieses Konto sperren möchten? Sie werden ausgeloggt und werden sich mit diesem Konto nicht wieder anmelden können. Sie verlassen automatisch alle Haushälter. Leere Haushälter und ihre Listen werden unwiderruflich gelöscht. Sie werden mit dieser E-Mailadresse kein neues Konto registrieren können.",
+  );
+
+  if (!isUserSure) {
+    return;
+  }
 
   const teams = await teamsAPI.list().then(
     (list) => list.teams,
     () => [],
   );
-  for (const team of teams) {
-    if (team.total <= 1) {
-      for (const shoppingList of await dbAPI
-        .listDocuments(
-          CONFIG.DATABASE_ID,
-          CONFIG.DB_COLLECTION_SHOPPINGLISTS,
-          [Query.equal("ID_Household", team.$id)],
-        )
-        .then(
-          (s) => s.documents as Einkaufsliste[],
-          () => [],
-        )) {
-        shoppingList.listeneintrag.forEach(async (entry) => {
-          orderedDeletions.push(
-            dbAPI.deleteDocument(
-              CONFIG.DATABASE_ID,
-              CONFIG.DB_COLLECTION_SHOPLISTENTRY,
-              entry.$id!,
-            ),
-          );
-        });
-        orderedDeletions.push(
-          dbAPI.deleteDocument(
-            CONFIG.DATABASE_ID,
-            CONFIG.DB_COLLECTION_SHOPPINGLISTS,
-            shoppingList.$id!,
-          ),
-        );
-      }
-    }
 
-    if (team.total <= 1) {
-      orderedDeletions.push(teamsAPI.delete(team.$id));
-    } else {
-      for (const myTeamMembership of await teamsAPI
-        .listMemberships(team.$id)
-        .then(
-          (l) => l.memberships,
-          () => [],
-        )) {
-        orderedDeletions.push(
-          teamsAPI.deleteMembership(team.$id, myTeamMembership.$id),
-        );
-      }
-    }
-  }
-
-  Promise.all(orderedDeletions).then(() => {
-    accountAPI.updateStatus().then(() => (window.location.pathname = "/"));
-  });
+  await Promise.allSettled(teams.map((team) => leaveHousehold(team, true))).then(
+    () => {
+      accountAPI.updateStatus().then(() => (window.location.pathname = "/"), (reason) => {
+        showToast("Kontolöschung fehlgeschlagen");
+        console.error("Account delete failed", reason);
+      });
+    },
+    (reason) => {
+      showToast(
+        "Kontolöschung fehlgeschlagen - konnte nicht alle Teams verlassen",
+      );
+      console.error("Account delete cleanup failed", reason);
+    },
+  );
 };
 
 const deleteAccountButton = document.querySelector<HTMLButtonElement>(
@@ -166,21 +200,6 @@ const inviteToHousehold = async (
   } else {
     showToast("Ungültige Email. Einladung abgebrochen.");
   }
-};
-const leaveHousehold = async (household: Models.Team<Models.Preferences>) => {
-  household.$id;
-  const currentMembership = (await teamsAPI
-    .listMemberships(household.$id)
-    .catch(() => null))!.memberships.at(0)!;
-  teamsAPI.deleteMembership(household.$id, currentMembership.$id).then(
-    () => {
-      window.location.reload();
-    },
-    (reason) => {
-      showToast("Haushalt verlassen hat fehlgeschlagen.");
-      console.debug("Leave household fail reason:", reason);
-    },
-  );
 };
 
 const kickTeamMember = (
@@ -243,7 +262,7 @@ if (listOfHouseholds) {
         const leaveButton = fragment.querySelector<HTMLButtonElement>(
           "button.leaveHousehold",
         )!;
-        leaveButton.addEventListener("click", leaveHousehold.bind(null, team));
+        leaveButton.addEventListener("click", leaveHousehold.bind(null, team, false));
         const listOfMembers =
           fragment.querySelector<HTMLUListElement>("ul.members")!;
         for (const member of await teamsAPI.listMemberships(team.$id).then(
