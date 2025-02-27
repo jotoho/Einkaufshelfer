@@ -22,6 +22,23 @@ form#new-list-form {
   }
 }
 
+main {
+  position: relative;
+}
+
+button#gotoFoodSearch {
+  width: fit-content;
+  min-width: unset;
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+
+main > h2 {
+  width: fit-content;
+  min-width: unset;
+}
+
 .shoppinglists {
   display: flex;
   flex-direction: column;
