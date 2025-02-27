@@ -6,14 +6,14 @@ import { CONFIG } from "./config.ts";
 
 console.info("Running Einkaufshelfer@" + CONFIG.VERSION);
 
-const pageHeader: HTMLElement | null = document.querySelector(
+const pageHeader = document.querySelector<HTMLElement>(
   "header#pageHeader.standardheader",
 );
-const pageHeaderLoginButton: HTMLButtonElement | null = pageHeader
-  ? pageHeader.querySelector("button#headerLogin")
+const pageHeaderLoginButton = pageHeader
+  ? pageHeader.querySelector<HTMLButtonElement>("button#headerLogin")
   : null;
-const pageHeaderLogoffButton: HTMLButtonElement | null = pageHeader
-  ? pageHeader.querySelector("button#headerLogoff")
+const pageHeaderLogoffButton = pageHeader
+  ? pageHeader.querySelector<HTMLButtonElement>("button#headerLogoff")
   : null;
 const pageHeaderUserInfo = pageHeader
   ? pageHeader.querySelector<HTMLAnchorElement>("a#headerUserInfo")
