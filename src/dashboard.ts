@@ -69,7 +69,7 @@ const generateListRepresentation = async (liste: Einkaufsliste) => {
     "order: " + Math.floor(new Date(liste.stichtag).getTime() / 3_600_000);
   result.innerHTML = `
     <a href="/liste.html?id=${liste.$id}" >
-      <h3 class="listname">${liste.beschriftung}</h3>
+      <h4 class="listname">${liste.beschriftung}</h4>
       <span class="household">${(await teams.get(liste.ID_Household)).name}</span>
       <time datetime="${liste.stichtag}">${stichtag_localized}</time>
       <progress max="${einträge.length}"
