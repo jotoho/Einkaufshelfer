@@ -31,6 +31,10 @@ const doneLists = document.querySelector(
   "main#pagemain > ul.shoppinglists.done",
 );
 
+const buttonGotoSearch = document.querySelector<HTMLButtonElement>(
+  "main > button#gotoFoodSearch",
+);
+
 console.assert(openLists !== null);
 console.assert(doneLists !== null);
 if (openLists === null || doneLists === null) {
@@ -161,3 +165,14 @@ const createNewList = (event: HTMLElementEventMap["click"]) => {
 document
   .getElementById("new-list-submitter")
   ?.addEventListener("click", createNewList);
+
+if (buttonGotoSearch) {
+  buttonGotoSearch.addEventListener(
+    "click",
+    async (event) => {
+      event.preventDefault();
+      window.location.pathname = "/essensuche.html";
+    },
+    { once: true },
+  );
+}
