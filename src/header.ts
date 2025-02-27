@@ -15,15 +15,20 @@ const pageHeaderLoginButton: HTMLButtonElement | null = pageHeader
 const pageHeaderLogoffButton: HTMLButtonElement | null = pageHeader
   ? pageHeader.querySelector("button#headerLogoff")
   : null;
-const pageHeaderUserInfo: HTMLAnchorElement | null = pageHeader
-  ? pageHeader.querySelector("#headerUserInfo")
+const pageHeaderUserInfo = pageHeader
+  ? pageHeader.querySelector<HTMLAnchorElement>("a#headerUserInfo")
+  : null;
+
+const homeLink = pageHeader
+  ? pageHeader.querySelector<HTMLAnchorElement>("a#homeLink")
   : null;
 
 const headerIsDamaged =
   !pageHeader ||
   !pageHeaderLoginButton ||
   !pageHeaderLogoffButton ||
-  !pageHeaderUserInfo;
+  !pageHeaderUserInfo ||
+  !homeLink;
 
 if (headerIsDamaged) {
   throw "Header is damaged. Cannot safely run header scripts.";
@@ -58,6 +63,9 @@ pageHeaderLogoffButton.addEventListener(
 const userLoggedIn = async (user: Models.User<Models.Preferences>) => {
   pageHeaderLogoffButton.disabled = false;
   pageHeaderUserInfo.innerText = user.email;
+  if (homeLink) {
+    homeLink.href = "/uebersicht.html";
+  }
 };
 
 const userNotLoggedIn = async (_: any) => {
