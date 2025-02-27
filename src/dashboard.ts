@@ -24,11 +24,11 @@ await accountAPI.get().catch(() => {
   window.location.pathname = "/login.html";
 });
 
-const openLists = document.querySelector(
-  "main#pagemain > ul.shoppinglists.open",
+const openLists = document.querySelector<HTMLUListElement>(
+  "main#pagemain > ul.shoppinglists.open:not(.done)",
 );
-const doneLists = document.querySelector(
-  "main#pagemain > ul.shoppinglists.done",
+const doneLists = document.querySelector<HTMLUListElement>(
+  "main#pagemain > ul.shoppinglists.done:not(.open)",
 );
 
 const buttonGotoSearch = document.querySelector<HTMLButtonElement>(
