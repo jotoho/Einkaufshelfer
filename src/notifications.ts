@@ -11,7 +11,7 @@ export const showToast = async (
   const newToast = document.createElement("div");
   newToast.id = "toast";
   newToast.innerText = notificationText;
-  document.children[0].appendChild(newToast);
+  document.children[0]!.appendChild(newToast);
   if (!Number.isFinite(duration) || duration < 0) {
     duration = DEFAULT_DURATION;
   }

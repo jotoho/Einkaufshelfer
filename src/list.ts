@@ -229,22 +229,26 @@ function documentEventHandler(response: RealtimeResponseEvent<unknown>) {
     if (currentRelations.get(changedEntry.$id!) != listid) {
         return;
     }
-    switch (true) {
-        case /create$/.test(response.events[0]):
-            addRowToTable(changedEntry);
-            console.log("It creates!");
-            break;
-        case /delete$/.test(response.events[0]):
-            deleteRow(changedEntry);
-            console.log("It deletes!");
-            break;
-        case /update$/.test(response.events[0]):
-            updateRowEntry(changedEntry);
-            console.log("It updates!");
-            break;
-        default:
-            break;
+    const event = response.events[0];
+    if (event) {
+        switch (true) {
+            case /create$/.test(event):
+                addRowToTable(changedEntry);
+                console.log("It creates!");
+                break;
+            case /delete$/.test(event):
+                deleteRow(changedEntry);
+                console.log("It deletes!");
+                break;
+            case /update$/.test(event):
+                updateRowEntry(changedEntry);
+                console.log("It updates!");
+                break;
+            default:
+                break;
+        }
     }
+
 }
 
 function deleteRow(entry: Listeneintrag) {
@@ -278,7 +282,7 @@ async function updateListEntry(entry: Listeneintrag) {
 
 function updateListInfo(list: Einkaufsliste) {
     listTitel.value = list.beschriftung;
-    deadline.value = list.stichtag.split('T')[0];
+    deadline.value = list.stichtag.split('T')[0]!;
     listDescription.value = list.beschreibung;
 }
 

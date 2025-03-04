@@ -4,27 +4,31 @@
 {
   "compilerOptions": {
     "target": "ES2024",
-    "useDefineForClassFields": true,
-    "module": "ESNext",
-    "lib": ["ES2024", "DOM", "DOM.Iterable"],
+    "module": "es2022",
     "skipLibCheck": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
+    "noUncheckedSideEffectImports": true,
 
     /* Linting */
     "strict": true,
-    "strictNullChecks": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
 
     "sourceMap": true
   },
-  "include": ["src"]
+  "include": ["src/*.ts"]
 }
