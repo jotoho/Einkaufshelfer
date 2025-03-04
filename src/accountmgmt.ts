@@ -74,6 +74,12 @@ const leaveHousehold = async (
   const myMembership = currentMembershipsInTeam.filter(
     (membership) => membership.userId === currentUser.$id,
   )[0];
+  if (!myMembership) {
+    showToast("Fehler beim Verlassen des Haushalts.");
+    const errMsg = "myMembership could not be found in backend response";
+    console.error(errMsg);
+    throw errMsg;
+  }
   if (household.total <= 1) {
     await dbAPI
       .listDocuments(CONFIG.DATABASE_ID, CONFIG.DB_COLLECTION_SHOPPINGLISTS, [

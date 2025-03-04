@@ -137,10 +137,11 @@ const updateSearchButtonStatus = () => {
   if (documentCorrupt) {
     return;
   }
-  const limitState = getAvailableCap(RATELIMIT_CAP.SEARCH_QUERY);
-  const limitExhausted = limitState.operationsAvailable === 0;
+  const limit = RATELIMIT_CAP["SEARCH_QUERY"];
+  const limitState = limit ? getAvailableCap(limit) : null;
+  const limitExhausted = limit ? limitState!.operationsAvailable === 0 : true;
   domFormSubmit!.disabled = limitExhausted;
-  if (limitExhausted && limitState.timestampNextAvailable !== null) {
+  if (limitExhausted && limitState?.timestampNextAvailable) {
     setTimeout(
       updateSearchButtonStatus,
       limitState.timestampNextAvailable - Date.now(),
@@ -258,7 +259,8 @@ const performSearchFn = async (event?: HTMLElementEventMap["submit"]) => {
   if (documentCorrupt) {
     return;
   }
-  if (getAvailableCap(RATELIMIT_CAP.SEARCH_QUERY).operationsAvailable > 0) {
+  const applicableLimit = RATELIMIT_CAP["SEARCH_QUERY"];
+  if (applicableLimit && getAvailableCap(applicableLimit).operationsAvailable > 0) {
     const searchValue = domSearchField!.value;
     if (searchValue.trim().length === 0) {
       return;
@@ -319,7 +321,7 @@ const performSearchFn = async (event?: HTMLElementEventMap["submit"]) => {
         return [];
       },
     );
-    recordUsage(RATELIMIT_CAP.SEARCH_QUERY, 1);
+    recordUsage(applicableLimit, 1);
     const hits = await hitsPromise;
 
     // empty DOM of previous search results, if any.

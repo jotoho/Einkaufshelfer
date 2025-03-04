@@ -107,12 +107,12 @@ const dateFormField: HTMLInputElement | null = document.querySelector(
 if (dateFormField) {
   dateFormField.min = new Date(new Date().setDate(new Date().getDate() - 1))
     .toISOString()
-    .split("T")[0];
+    .split("T")[0]!;
   dateFormField.max = new Date(
     new Date().setFullYear(new Date().getFullYear() + 1),
   )
     .toISOString()
-    .split("T")[0];
+    .split("T")[0]!;
 }
 
 const teamsSelect = document.getElementById("teams-select");
