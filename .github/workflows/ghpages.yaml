@@ -11,9 +11,6 @@ on:
 
 jobs:
   build-page:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -41,6 +38,9 @@ jobs:
           overwrite: true
           retention-days: 1
   deploy-page:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     needs: build-page
