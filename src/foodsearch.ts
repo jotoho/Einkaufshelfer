@@ -325,7 +325,7 @@ const performSearchFn = async (event?: HTMLElementEventMap["submit"]) => {
     const hits = await hitsPromise;
 
     // empty DOM of previous search results, if any.
-    for (const prevResultDOM of domSearchResults!.childNodes ?? []) {
+    for (const prevResultDOM of Array.from(domSearchResults!.childNodes)) {
       domSearchResults!.removeChild(prevResultDOM);
     }
 
