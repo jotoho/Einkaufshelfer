@@ -32,7 +32,7 @@ jobs:
   lockthreads:
     name: Scan and Lock closed threads
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == "schedule" }}
+    if: github.event_name == 'schedule'
     permissions:
       issues: write
       pull-requests: write
