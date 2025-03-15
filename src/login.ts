@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only
 // SPDX-FileCopyrightText: 2025 Tim Beckmann <beckmann.tim@fh-swf.de>
 
-import { Client, Account } from "appwrite";
+import { Client, Account, OAuthProvider } from "appwrite";
 import { CONFIG } from './config.ts';
 
 const client: Client = new Client();
@@ -16,6 +16,7 @@ const email = <HTMLInputElement>document.getElementById("email");
 const password = <HTMLInputElement>document.getElementById("password");
 const errorField = <HTMLDivElement>document.getElementById("error");
 const loginButton = <HTMLButtonElement>document.getElementById("loginButton");
+const ssoLoginButton = document.querySelector<HTMLButtonElement>("button#buttonSSOLogin");
 
 isUserLoggedIn().then((isLoggedIn) => {
     if (!isLoggedIn) {
@@ -25,6 +26,9 @@ isUserLoggedIn().then((isLoggedIn) => {
     email.disabled = true;
     password.disabled = true;
     loginButton.disabled = true;
+    if (ssoLoginButton) {
+        ssoLoginButton.disabled = true;
+    }
 
     errorField.innerHTML = `
         <p>Sie sind bereits angemeldet!<br />
@@ -68,4 +72,15 @@ async function isUserLoggedIn(): Promise<boolean> {
         return false;
     }
     return true;
+}
+
+if (ssoLoginButton) {
+    ssoLoginButton.addEventListener("click", async (event) => {
+        event.preventDefault();
+        await account.createOAuth2Session(
+            OAuthProvider.Oidc,
+            document.location.origin + "/oidc/success.html",
+            document.location.origin + "/oidc/failure.html"
+        );
+    }, { once: true });
 }

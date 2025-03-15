@@ -66,6 +66,15 @@ const userLoggedIn = async (user: Models.User<Models.Preferences>) => {
   if (homeLink) {
     homeLink.href = "/uebersicht.html";
   }
+  const session = await accountAPI.getSession("current");
+  if (
+    session.provider === "oidc" &&
+    session?.providerAccessTokenExpiry &&
+    new Date(session.providerAccessTokenExpiry).getTime() <
+      Date.now() + 1000 * 60 * 30
+  ) {
+    accountAPI.updateSession("current");
+  }
 };
 
 const userNotLoggedIn = async (_: any) => {

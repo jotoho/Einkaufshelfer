@@ -36,3 +36,9 @@ form {
 #error {
     text-align: center;
 }
+
+button#buttonSSOLogin {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -19,6 +19,8 @@ export default defineConfig({
 				registration: resolve(__dirname, '/registration.html'),
 				settings: resolve(__dirname, '/settings.html'),
 				liste: resolve(__dirname, '/liste.html'),
+				oidc_success: resolve(__dirname, '/oidc/success.html'),
+				oidc_failure: resolve(__dirname, '/oidc/failure.html'),
 			},
 		},
 		target: 'es2024',
