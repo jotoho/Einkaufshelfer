@@ -7,7 +7,23 @@ updates:
     schedule:
       interval: "weekly"
     directory: "/"
+    assignees:
+      - "jotoho"
+    reviewers:
+      - "jotoho"
   - package-ecosystem: "github-actions"
     schedule:
       interval: "weekly"
     directory: "/"
+    assignees:
+      - "jotoho"
+    reviewers:
+      - "jotoho"
+  - package-ecosystem: "pip"
+    schedule:
+      interval: "weekly"
+    directory: "/functions/invite-to-team/"
+    assignees:
+      - "jotoho"
+    reviewers:
+      - "jotoho"
