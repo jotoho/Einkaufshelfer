@@ -6,10 +6,6 @@ name: 'Process Github Threads'
 on:
   schedule:
     - cron: '0 0 * * *'
-  issues:
-    types: [assigned, milestoned]
-  pull_request:
-    types: [assigned, milestoned]
 
 jobs:
   stale:
@@ -21,7 +17,6 @@ jobs:
       discussions: write
     concurrency:
       group: stale
-      cancel-in-progress: true
     steps:
       - uses: actions/stale@v9.1.0
         with:
@@ -32,14 +27,12 @@ jobs:
   lockthreads:
     name: Scan and Lock closed threads
     runs-on: ubuntu-latest
-    if: github.event_name == 'schedule'
     permissions:
       issues: write
       pull-requests: write
       discussions: write
     concurrency:
       group: lockthreads
-      cancel-in-progress: true
     steps:
       - uses: dessant/lock-threads@v5.0.1
         with:
