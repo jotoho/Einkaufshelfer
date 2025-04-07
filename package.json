@@ -9,14 +9,14 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@eslint/js": "^9.22.0",
-    "eslint": "^9.23.0",
-    "jsr": "^0.13.4",
-    "prettier": "^3.5.3",
-    "typescript": "^5.8.3",
-    "typescript-eslint": "^8.28.0",
-    "vite": "^6.2.5",
-    "vite-plugin-html-inject": "^1.1.2"
+    "@eslint/js": "9.24.0",
+    "eslint": "9.24.0",
+    "jsr": "0.13.4",
+    "prettier": "3.5.3",
+    "typescript": "5.8.3",
+    "typescript-eslint": "8.28.0",
+    "vite": "6.2.5",
+    "vite-plugin-html-inject": "1.1.2"
   },
   "dependencies": {
     "@zade/vite-plugin-strip-html-comments": "npm:@jsr/zade__vite-plugin-strip-html-comments@^1.1.3",
