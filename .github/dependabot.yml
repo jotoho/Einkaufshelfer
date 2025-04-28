@@ -27,3 +27,9 @@ updates:
       - "jotoho"
     reviewers:
       - "jotoho"
+
+groups:
+  compatible:
+    update-types:
+      - "patch"
+      - "minor"
