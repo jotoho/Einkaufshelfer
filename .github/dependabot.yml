@@ -11,6 +11,11 @@ updates:
       - "jotoho"
     reviewers:
       - "jotoho"
+    groups:
+      compatible:
+        update-types:
+          - "patch"
+          - "minor"
   - package-ecosystem: "github-actions"
     schedule:
       interval: "weekly"
@@ -19,6 +24,11 @@ updates:
       - "jotoho"
     reviewers:
       - "jotoho"
+    groups:
+      compatible:
+        update-types:
+          - "patch"
+          - "minor"
   - package-ecosystem: "pip"
     schedule:
       interval: "weekly"
@@ -27,9 +37,8 @@ updates:
       - "jotoho"
     reviewers:
       - "jotoho"
-
-groups:
-  compatible:
-    update-types:
-      - "patch"
-      - "minor"
+    groups:
+      compatible:
+        update-types:
+          - "patch"
+          - "minor"
