@@ -9,8 +9,6 @@ updates:
     directory: "/"
     assignees:
       - "jotoho"
-    reviewers:
-      - "jotoho"
     groups:
       compatible:
         update-types:
@@ -22,8 +20,6 @@ updates:
     directory: "/"
     assignees:
       - "jotoho"
-    reviewers:
-      - "jotoho"
     groups:
       compatible:
         update-types:
@@ -34,8 +30,6 @@ updates:
       interval: "weekly"
     directory: "/functions/invite-to-team/"
     assignees:
-      - "jotoho"
-    reviewers:
       - "jotoho"
     groups:
       compatible:
