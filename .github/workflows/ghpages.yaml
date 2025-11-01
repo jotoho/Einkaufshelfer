@@ -16,7 +16,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: Set up Node
@@ -52,14 +52,14 @@ jobs:
       cancel-in-progress: true
     steps:
       - name: Retrieve build result
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: 'next-pages-build'
           path: './dist/'
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: "./dist"
       - name: Deploy to GitHub Pages
