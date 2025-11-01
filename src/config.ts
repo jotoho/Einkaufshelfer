@@ -7,7 +7,7 @@ export declare const EINKAUFSLISTE_VERSION: string;
 
 export const CONFIG = Object.freeze({
   PROJECT_ID: "6905e60b0026b9455306",
-  BACKEND_ENDPOINT: "https://api.einkaufsliste.jotoho.de/v1",
+  BACKEND_ENDPOINT: "https://appwrite.saas.jotoho.de/v1",
   DATABASE_ID: "6906122f00178d319d15",
   DB_COLLECTION_SHOPPINGLISTS: "shoppinglists",
   DB_COLLECTION_SHOPLISTENTRY: "shoplistentry",
