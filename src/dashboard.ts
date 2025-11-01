@@ -9,6 +9,7 @@ import {
   ID,
   Permission,
   Role,
+  Models,
 } from "appwrite";
 import { CONFIG } from "./config.ts";
 import { showToast } from "./notifications.ts";
@@ -97,7 +98,7 @@ const documentProcessor = async (doc: Einkaufsliste) => {
 
 const db = new Databases(client);
 const shoppingLists = (
-  await db.listDocuments(CONFIG.DATABASE_ID, CONFIG.DB_COLLECTION_SHOPPINGLISTS)
+  await db.listDocuments<Einkaufsliste & Models.Document>(CONFIG.DATABASE_ID, CONFIG.DB_COLLECTION_SHOPPINGLISTS)
 ).documents as Einkaufsliste[];
 shoppingLists.forEach(documentProcessor);
 
