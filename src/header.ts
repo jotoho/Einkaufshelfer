@@ -70,9 +70,7 @@ const userLoggedIn = async (user: Models.User<Models.Preferences>) => {
   if (
     session.provider === "oidc" &&
     session?.providerAccessTokenExpiry &&
-    new Date(session.providerAccessTokenExpiry).getTime() <
-      Date.now() + 1000 * 60 * 30
-  ) {
+    new Date(session.providerAccessTokenExpiry).getTime() < Date.now() + 1000 * 60 * 5) {
     accountAPI.updateSession("current");
   }
 };
