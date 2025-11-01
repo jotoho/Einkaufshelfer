@@ -54,7 +54,7 @@ const shoppinglist = database.getDocument<Einkaufsliste & Models.Document>({
     databaseId: CONFIG.DATABASE_ID,
     collectionId: CONFIG.DB_COLLECTION_SHOPPINGLISTS,
     documentId: listid!,
-    queries: [Query.select(["*", "einkaufslisten.*"])],
+    queries: [Query.select(["*", "einkaufslisten"])],
 }) as Promise<Einkaufsliste>;
 
 shoppinglist.then(async (list) => {
