@@ -99,11 +99,11 @@ const documentProcessor = async (doc: Einkaufsliste) => {
 
 const db = new Databases(client);
 const shoppingLists = (
-  await db.listDocuments<Einkaufsliste & Models.Document>(
-    CONFIG.DATABASE_ID,
-    CONFIG.DB_COLLECTION_SHOPPINGLISTS,
-    queries=[Query.select(["*", "listeneintrag.*"])]
-  )
+  await db.listDocuments<Einkaufsliste & Models.Document>({
+    databaseId: CONFIG.DATABASE_ID,
+    collectionId: CONFIG.DB_COLLECTION_SHOPPINGLISTS,
+    queries: [Query.select(["*", "listeneintrag.*"])],
+  })
 ).documents as Einkaufsliste[];
 shoppingLists.forEach(documentProcessor);
 

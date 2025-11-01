@@ -9,7 +9,8 @@ import {
     RealtimeResponseEvent,
     Teams,
     Role,
-    Query
+    Query,
+    Models,
 } from 'appwrite';
 import { CONFIG } from './config.ts';
 import type {
@@ -49,12 +50,12 @@ const deleteListButton = document.querySelector('button#deleteListButton') as HT
 const listDescription = document.querySelector('textarea#listDescription') as HTMLTextAreaElement;
 const editDescriptionButton = document.querySelector('button#editDescriptionButton') as HTMLButtonElement;
 
-const shoppinglist = database.getDocument(
-    CONFIG.DATABASE_ID,
-    CONFIG.DB_COLLECTION_SHOPPINGLISTS,
-    listid!,
-    queries=[Query.select(["*", "einkaufslisten.*"])]
-) as Promise<Einkaufsliste>;
+const shoppinglist = database.getDocument<Einkaufsliste & Models.Document>({
+    databaseId: CONFIG.DATABASE_ID,
+    collectionId: CONFIG.DB_COLLECTION_SHOPPINGLISTS,
+    documentId: listid!,
+    queries: [Query.select(["*", "einkaufslisten.*"])],
+}) as Promise<Einkaufsliste>;
 
 shoppinglist.then(async (list) => {
     setPageTitle(list);
