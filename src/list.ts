@@ -8,7 +8,8 @@ import {
     Permission,
     RealtimeResponseEvent,
     Teams,
-    Role
+    Role,
+    Query
 } from 'appwrite';
 import { CONFIG } from './config.ts';
 import type {
@@ -51,7 +52,8 @@ const editDescriptionButton = document.querySelector('button#editDescriptionButt
 const shoppinglist = database.getDocument(
     CONFIG.DATABASE_ID,
     CONFIG.DB_COLLECTION_SHOPPINGLISTS,
-    listid!
+    listid!,
+    queries=[Query.select(["*", "einkaufslisten.*"])]
 ) as Promise<Einkaufsliste>;
 
 shoppinglist.then(async (list) => {
