@@ -9,12 +9,12 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@eslint/js": "9.26.0",
-    "eslint": "9.26.0",
-    "jsr": "0.13.4",
-    "prettier": "3.5.3",
-    "typescript": "5.8.3",
-    "typescript-eslint": "8.32.0",
+    "@eslint/js": "9.39.0",
+    "eslint": "9.39.0",
+    "jsr": "0.13.5",
+    "prettier": "3.6.2",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.46.2",
     "vite": "6.3.5",
     "vite-plugin-html-inject": "1.1.2"
   },
