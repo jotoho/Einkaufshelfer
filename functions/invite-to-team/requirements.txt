@@ -1,4 +1,4 @@
 # SPDX-License-Identifier: CC0-1.0
 # SPDX-FileCopyrightText: 2025 Jonas Tobias Hopusch <git@jotoho.de>
 
-appwrite ~= 14.0.0
+appwrite ~= 14.1.0
