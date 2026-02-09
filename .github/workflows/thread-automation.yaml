@@ -1,23 +1,19 @@
-# SPDX-FileCopyrightText: 2023-2025 Jonas Tobias Hopusch <git@jotoho.de>
+# SPDX-FileCopyrightText: 2023-2026 Jonas Tobias Hopusch <git@jotoho.de>
 # SPDX-License-Identifier: CC0-1.0
 
 name: 'Process Github Threads'
 
 on:
   issues:
-    types: [created, assigned, unassigned, milestoned, demilestoned]
+    types: [assigned, unassigned, milestoned, demilestoned]
   issue_comment:
     types: [created]
   pull_request:
-    types: [created, assigned, unassigned, milestoned, demilestoned]
+    types: [assigned, unassigned, milestoned, demilestoned]
   pull_request_review:
     types: [submitted]
-  discussion:
-    types: [created]
   discussion_comment:
     types: [created]
-  release:
-    types: [published]
   workflow_dispatch:
 
 jobs:
