@@ -11,11 +11,11 @@
   "devDependencies": {
     "jsr": "0.14.3",
     "prettier": "3.8.1",
-    "typescript-eslint": "8.56.0",
+    "typescript-eslint": "8.56.1",
     "vite": "7.3.1",
     "vite-plugin-html-inject": "1.1.2"
   },
   "dependencies": {
-    "appwrite": "^22.3.0"
+    "appwrite": "^22.4.1"
   }
 }
