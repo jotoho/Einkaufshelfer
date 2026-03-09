@@ -16,6 +16,6 @@
     "vite-plugin-html-inject": "1.1.2"
   },
   "dependencies": {
-    "appwrite": "^22.4.1"
+    "appwrite": "^23.0.0"
   }
 }
