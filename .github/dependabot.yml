@@ -2,10 +2,12 @@
 # SPDX-FileCopyrightText: 2025 Jonas Tobias Hopusch <git@jotoho.de>
 
 version: 2
+multi-ecosystem-groups:
+  application:
+    schedule: "monthly"
 updates:
   - package-ecosystem: "npm"
-    schedule:
-      interval: "weekly"
+    multi-ecosystem-group: "application"
     directory: "/"
     assignees:
       - "jotoho"
@@ -16,7 +18,7 @@ updates:
           - "minor"
   - package-ecosystem: "github-actions"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     directory: "/"
     assignees:
       - "jotoho"
@@ -26,8 +28,7 @@ updates:
           - "patch"
           - "minor"
   - package-ecosystem: "pip"
-    schedule:
-      interval: "weekly"
+    multi-ecosystem-group: "application"
     directory: "/functions/invite-to-team/"
     assignees:
       - "jotoho"
