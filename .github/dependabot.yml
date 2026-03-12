@@ -8,6 +8,7 @@ multi-ecosystem-groups:
 updates:
   - package-ecosystem: "npm"
     multi-ecosystem-group: "application"
+    patterns: ["*"]
     directory: "/"
     assignees:
       - "jotoho"
@@ -29,6 +30,7 @@ updates:
           - "minor"
   - package-ecosystem: "pip"
     multi-ecosystem-group: "application"
+    patterns: ["*"]
     directory: "/functions/invite-to-team/"
     assignees:
       - "jotoho"
